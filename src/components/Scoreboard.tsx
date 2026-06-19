@@ -45,7 +45,7 @@ export default function Scoreboard({ members, onBack }: Props) {
       const map: Record<string, ChoreEntry[]> = {}
       for (const a of data ?? []) {
         if (!a.member_id) continue
-        const chore = a.chore as { name: string; duration_minutes: number } | null
+        const chore = (a.chore as unknown) as { name: string; duration_minutes: number } | null
         if (!map[a.member_id]) map[a.member_id] = []
         map[a.member_id].push({
           name: chore?.name ?? '?',
